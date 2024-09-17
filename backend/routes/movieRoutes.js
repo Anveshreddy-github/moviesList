@@ -3,7 +3,7 @@ const Movie = require('../models/movieModel');
 const router = express.Router();
 
 // Add new movie/web series
-router.post('/api/movies', async (req, res) => {
+router.post('/movies', async (req, res) => {
   const { name, type, platform } = req.body;  // Get type from the request body
   try {
     const movie = new Movie({ name, type, platform });
@@ -15,7 +15,7 @@ router.post('/api/movies', async (req, res) => {
 });
 
 // Get all movies/web series
-router.get('/api/movies', async (req, res) => {
+router.get('/movies', async (req, res) => {
   try {
     const movies = await Movie.find();
     res.json(movies);
@@ -25,7 +25,7 @@ router.get('/api/movies', async (req, res) => {
 });
 
 // Update movie/web series status and priority
-router.put('/api/movies/:id', async (req, res) => {
+router.put('/movies/:id', async (req, res) => {
   const { id } = req.params;
   const { status, priority } = req.body;
   try {
@@ -41,7 +41,7 @@ router.put('/api/movies/:id', async (req, res) => {
 });
 
 // Delete movie/web series
-router.delete('/api/movies/:id', async (req, res) => {
+router.delete('/movies/:id', async (req, res) => {
   const { id } = req.params;
   try {
     await Movie.findByIdAndDelete(id);
